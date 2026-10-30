@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIMEOG | Luxury Timepieces</title>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PJGNTCHS');</script>
+  <!-- End Google Tag Manager -->
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f4f5f7; color: #1a1a1a; }
+    header { background: #0f1111; color: white; padding: 18px 8%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .logo { font-size: 24px; font-weight: 800; letter-spacing: 3px; color: #e5a93c; }
+    .cart-box { background: #232f3e; padding: 8px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; }
+    
+    .hero { background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80') center/cover; color: white; text-align: center; padding: 80px 20px; }
+    .hero h1 { font-size: 44px; margin-bottom: 12px; }
+    .hero p { font-size: 18px; color: #ddd; max-width: 600px; margin: 0 auto 25px; }
+    .hero-btn { background: #e5a93c; color: #000; border: none; padding: 12px 28px; font-size: 16px; font-weight: 700; border-radius: 4px; cursor: pointer; }
+    
+    .section-title { text-align: center; margin: 50px 0 20px; font-size: 28px; }
+    .products { display: flex; justify-content: center; gap: 30px; padding: 0 8% 60px; flex-wrap: wrap; }
+    .card { background: white; border: 1px solid #e1e4e8; border-radius: 8px; width: 310px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; }
+    .card img { width: 100%; height: 220px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; }
+    .card h3 { font-size: 20px; margin-bottom: 8px; }
+    .card p { font-size: 14px; color: #666; margin-bottom: 15px; line-height: 1.4; }
+    .price-tag { font-size: 22px; font-weight: 700; color: #111; margin-bottom: 15px; }
+    .btn-group { display: flex; gap: 10px; }
+    .btn { flex: 1; padding: 10px; border-radius: 4px; border: none; font-weight: 600; cursor: pointer; font-size: 13px; }
+    .btn-details { background: #eef2f5; color: #333; }
+    .btn-cart { background: #0f1111; color: white; }
+    .btn-cart:hover { background: #e5a93c; color: #000; }
+
+    .checkout-banner { background: #fff; max-width: 700px; margin: 0 auto 60px; padding: 30px; border-radius: 8px; border: 1px solid #ddd; text-align: center; }
+    .btn-checkout { background: #28a745; color: white; border: none; padding: 14px 35px; font-size: 16px; font-weight: 700; border-radius: 4px; cursor: pointer; margin-top: 15px; }
+
+    /* Modal */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 200; }
+    .modal-content { background: white; padding: 30px; border-radius: 8px; width: 90%; max-width: 480px; position: relative; }
+    .close-btn { position: absolute; top: 12px; right: 15px; font-size: 22px; cursor: pointer; }
+    .modal-content ul { margin: 15px 0 20px 20px; font-size: 14px; color: #444; }
+    .modal-content ul li { margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJGNTCHS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header>
+    <div class="logo">TIMEOG</div>
+    <div class="cart-box" id="cart-btn">Cart (<span id="cart-count">0</span>)</div>
+  </header>
+
+  <section class="hero">
+    <h1>Redefine Your Presence</h1>
+    <p>Handcrafted precision chronographs built for leaders and visionaries.</p>
+    <button class="hero-btn" id="explore-collection-btn">Explore Collection</button>
+  </section>
+
+  <h2 class="section-title">Featured Timepieces</h2>
+  <main class="products">
+    <!-- Product 1 -->
+    <div class="card" data-id="TM-01" data-name="Stealth Chrono Matte" data-price="4999">
+      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" alt="Stealth Chrono">
+      <h3>Stealth Chrono</h3>
+      <p>Matte black aerospace-grade steel casing with anti-reflective sapphire glass.</p>
+      <div class="price-tag">₹4,999</div>
+      <div class="btn-group">
+        <button class="btn btn-details" onclick="openDetails('Stealth Chrono', 'Aerospace titanium body', '100m Water Resistant', 'Quartz Movement', '4999')">View Specs</button>
+        <button class="btn btn-cart" onclick="addToCart('TM-01', 'Stealth Chrono', 4999)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="card" data-id="TM-02" data-name="Royal Voyager Silver" data-price="7499">
+      <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80" alt="Royal Voyager">
+      <h3>Royal Voyager</h3>
+      <p>Brushed stainless silver finish equipped with an exposed automatic balance wheel.</p>
+      <div class="price-tag">₹7,499</div>
+      <div class="btn-group">
+        <button class="btn btn-details" onclick="openDetails('Royal Voyager', 'Surgical Stainless Steel', 'Automatic Movement', 'Dual-Time Zone', '7499')">View Specs</button>
+        <button class="btn btn-cart" onclick="addToCart('TM-02', 'Royal Voyager', 7499)">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="checkout-banner">
+    <h3>Ready to complete your purchase?</h3>
+    <p>Instant dispatch with 2-year comprehensive replacement warranty.</p>
+    <button class="btn-checkout" id="btn-proceed-checkout" onclick="triggerCheckout()">Proceed to Checkout</button>
+  </div>
+
+  <!-- Specs Modal -->
+  <div class="modal" id="details-modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeDetails()">&times;</span>
+      <h3 id="modal-title">Product Details</h3>
+      <ul>
+        <li id="m-spec1"></li>
+        <li id="m-spec2"></li>
+        <li id="m-spec3"></li>
+      </ul>
+      <div class="price-tag" id="modal-price"></div>
+    </div>
+  </div>
+
+  <script>
+    let cartTotal = 0;
+
+    // GA4 view_item_list event on page load
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'view_item_list',
+      ecommerce: {
+        items: [
+          { item_id: 'TM-01', item_name: 'Stealth Chrono', price: 4999 },
+          { item_id: 'TM-02', mechanical_name: 'Royal Voyager', price: 7499 }
+        ]
+      }
+    });
+
+    function addToCart(id, name, price) {
+      cartTotal++;
+      document.getElementById('cart-count').innerText = cartTotal;
+
+      // Push add_to_cart event to dataLayer
+      window.dataLayer.push({
+        event: 'add_to_cart',
+        ecommerce: {
+          currency: 'INR',
+          value: price,
+          items: [{ item_id: id, item_name: name, price: price, quantity: 1 }]
+        }
+      });
+      alert(name + " added to cart!");
+    }
+
+    function openDetails(name, s1, s2, s3, price) {
+      document.getElementById('modal-title').innerText = name;
+      document.getElementById('m-spec1').innerText = s1;
+      document.getElementById('m-spec2').innerText = s2;
+      document.getElementById('m-spec3').innerText = s3;
+      document.getElementById('modal-price').innerText = '₹' + price;
+      document.getElementById('details-modal').style.display = 'flex';
+
+      // Push view_item event to dataLayer
+      window.dataLayer.push({
+        event: 'view_item',
+        ecommerce: {
+          currency: 'INR',
+          value: price,
+          items: [{ item_name: name, price: price }]
+        }
+      });
+    }
+
+    function closeDetails() {
+      document.getElementById('details-modal').style.display = 'none';
+    }
+
+    function triggerCheckout() {
+      if(cartTotal === 0) {
+        alert("Pehle cart mein watch add karein!");
+        return;
+      }
+      // Push begin_checkout event to dataLayer
+      window.dataLayer.push({
+        event: 'begin_checkout',
+        ecommerce: {
+          currency: 'INR',
+          value: cartTotal * 5000
+        }
+      });
+      alert("Redirecting to Checkout... (begin_checkout event sent to GTM)");
+    }
+  </script>
+</body>
+</html>
